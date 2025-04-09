@@ -9,6 +9,9 @@ let package = Package(
     products: [
         .library(name: "Numerix", targets: ["Numerix"])
     ],
+    dependencies: [
+        .package(url: "https://github.com/swiftlang/swift-docc-plugin.git", from: "1.4.3")
+    ],
     targets: [
         .target(
             name: "Numerix",
