@@ -11,7 +11,8 @@ jobs:
     - name: Select xcode version
       run: sudo xcode-select --switch /Applications/Xcode_16.2.app
     - name: Generate symbol graph
-      run: swift build \
+      run: |
+           swift build \
                 -Xswiftc -emit-symbol-graph \
                 -Xswiftc -emit-symbol-graph-dir -Xswiftc .symbolgraph/
     - name: Stage .symbolgraph
