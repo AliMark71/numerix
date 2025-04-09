@@ -5,15 +5,15 @@ on:
 
 jobs:
   symbol-graph-gen:
-    runs-on: ubuntu-latest
+    runs-on: macos-15
     steps:
     - uses: actions/checkout@v4
     - name: Install Swiftly (and Swift)
       run: |
-          curl -O https://download.swift.org/swiftly/linux/swiftly-$(uname -m).tar.gz && \
-          tar zxf swiftly-$(uname -m).tar.gz && \
-          ./swiftly init --quiet-shell-followup --verbose --assume-yes && \
-          . ~/.local/share/swiftly/env.sh && \
+          curl -O https://download.swift.org/swiftly/darwin/swiftly.pkg && \
+          installer -pkg swiftly.pkg -target CurrentUserHomeDirectory && \
+          ~/.swiftly/bin/swiftly init --quiet-shell-followup --verbose --assume-yes && \
+          . ~/.swiftly/env.sh && \
           hash -r
     - name: Log Swift version
       run: swift --version
