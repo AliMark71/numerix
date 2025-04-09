@@ -8,18 +8,13 @@ jobs:
     runs-on: macos-15
     steps:
     - uses: actions/checkout@v4
-    - name: Install Swiftly (and Swift)
-      run: |
-          curl -O https://download.swift.org/swiftly/darwin/swiftly.pkg && \
-          installer -pkg swiftly.pkg -target CurrentUserHomeDirectory && \
-          ~/.swiftly/bin/swiftly init --quiet-shell-followup --verbose --assume-yes && \
-          . ~/.swiftly/env.sh && \
-          hash -r
+    - name: Select xcode version
+      run: sudo xcode-select --switch /Applications/Xcode_16.3.app
     - name: Log Swift version
-      run: ~/.swiftly/bin/swift --version
+      run: swift --version
     - name: Generate symbol graph
       run: |
-           ~/.swiftly/bin/swift build \
+           swift build \
                 -Xswiftc -emit-symbol-graph \
                 -Xswiftc -emit-symbol-graph-dir -Xswiftc .symbolgraph/
     - name: Stage .symbolgraph
