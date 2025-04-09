@@ -16,10 +16,10 @@ jobs:
           . ~/.swiftly/env.sh && \
           hash -r
     - name: Log Swift version
-      run: \$SWIFTLY_BIN_DIR/swift --version
+      run: $SWIFTLY_BIN_DIR/swift --version
     - name: Generate symbol graph
       run: |
-           \$SWIFTLY_BIN_DIR/swift build \
+           $SWIFTLY_BIN_DIR/swift build \
                 -Xswiftc -emit-symbol-graph \
                 -Xswiftc -emit-symbol-graph-dir -Xswiftc .symbolgraph/
     - name: Stage .symbolgraph
