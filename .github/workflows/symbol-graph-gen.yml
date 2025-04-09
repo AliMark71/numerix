@@ -14,3 +14,9 @@ jobs:
       run: swift build \
                 -Xswiftc -emit-symbol-graph \
                 -Xswiftc -emit-symbol-graph-dir -Xswiftc .symbolgraph/
+    - name: Stage .symbolgraph
+      run: git add .symbolgraph
+    - name: Commit changes
+      run: git commit -m "[🤖 Auto] update .symbolgraph"
+    - name: Push changes
+      run: git push
