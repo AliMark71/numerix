@@ -1,0 +1,18 @@
+name: Generate symbol graph
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  tests:
+    runs-on: macos-15
+    steps:
+    - uses: actions/checkout@v4
+    - name: Select xcode version
+      run: sudo xcode-select --switch /Applications/Xcode_16.2.app
+    - name: Generate symbol graph
+      run: swift build \
+                -Xswiftc -emit-symbol-graph \
+                -Xswiftc -emit-symbol-graph-dir -Xswiftc .symbolgraph/
