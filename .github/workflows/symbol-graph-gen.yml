@@ -5,11 +5,18 @@ on:
 
 jobs:
   symbol-graph-gen:
-    runs-on: macos-15
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Select xcode version
-      run: sudo xcode-select --switch /Applications/Xcode_16.3.app
+    - name: Install Swiftly
+      run: |
+          curl -O https://download.swift.org/swiftly/linux/swiftly-$(uname -m).tar.gz && \
+          tar zxf swiftly-$(uname -m).tar.gz && \
+          ./swiftly init --quiet-shell-followup --verbose --assume-yes && \
+          . ~/.local/share/swiftly/env.sh && \
+          hash -r
+    - name: Swiftly, install Swift 6.1
+      run: swiftly install 6.1 --use --verbose --assume-yes
     - name: Log Swift version
       run: swift --version
     - name: Generate symbol graph
