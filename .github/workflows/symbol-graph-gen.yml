@@ -2,8 +2,6 @@ name: Generate symbol graph
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
   symbol-graph-gen:
